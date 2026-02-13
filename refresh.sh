@@ -11,6 +11,22 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 BOLD='\033[1m'
 
+# --- Self-Update Logic ---
+echo "Checking for script updates..."
+git fetch origin main &> /dev/null
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse "$UPSTREAM")
+
+if [ $LOCAL != $REMOTE ]; then
+    echo "A new version of LinuxFresh is available. Updating..."
+    git pull origin main
+    echo "Update complete! Restarting script..."
+    exec "$0" "$@"
+fi
+echo "You are running the latest version."
+# --- End of Self-Update Logic ---
+
 # ASCII Logo
 show_logo() {
     echo -e "${GREEN}${BOLD}"
