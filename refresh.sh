@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# LinuxFresh 🍃
-# A comprehensive Bash script to automate the maintenance of Debian-based Linux systems.
+echo "LinuxFresh 🍃"
+echo "A comprehensive Bash script to automate the maintenance of Debian-based Linux systems."
 
 # Colors for output
 GREEN='\033[0;32m'
