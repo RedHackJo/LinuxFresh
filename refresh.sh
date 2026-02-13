@@ -32,17 +32,19 @@ check_root() {
     fi
 }
 
-# Function to run commands with status check
+# Function to run commands with verbose output
 run_process() {
     local message=$1
     local command=$2
     
-    echo -ne "${YELLOW}${BOLD}>>${NC} ${message}... "
-    if eval "$command" > /dev/null 2>&1; then
-        echo -e "${GREEN}DONE${NC}"
+    echo -e "${YELLOW}${BOLD}>>${NC} ${message}"
+    echo -e "${BLUE}Running command:${NC} ${BOLD}${command}${NC}"
+    
+    if eval "$command"; then
+        echo -e "${GREEN}DONE: ${message}${NC}\n"
     else
-        echo -e "${RED}FAILED${NC}"
-        echo -e "${RED}${BOLD}Warning:${NC} Potential issue during '$message'. Continuing..."
+        echo -e "\n${RED}FAILED: ${message}${NC}"
+        echo -e "${RED}${BOLD}Warning:${NC} Potential issue during '$message'. Continuing...\n"
     fi
 }
 
