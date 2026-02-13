@@ -14,15 +14,18 @@ BOLD='\033[1m'
 # --- Self-Update Logic ---
 echo "Checking for script updates..."
 git fetch origin main &> /dev/null
-UPSTREAM=${1:-'@{u}'}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
+LOCAL=$(git rev-parse HEAD)
+REMOTE=$(git rev-parse origin/main)
 
-if [ $LOCAL != $REMOTE ]; then
-    echo "A new version of LinuxFresh is available. Updating..."
-    git pull origin main
-    echo "Update complete! Restarting script..."
-    exec "$0" "$@"
+if [ "$LOCAL" != "$REMOTE" ]; then
+    echo -e "${YELLOW}A new version of LinuxFresh is available. Updating...${NC}"
+    if git pull origin main; then
+        echo -e "${GREEN}Update complete! Restarting script...${NC}"
+        exec "$0" "$@"
+    else
+        echo -e "${RED}Update failed!${NC} Please check for local changes or network issues."
+        echo -e "${BLUE}Continuing with the current version...${NC}\n"
+    fi
 fi
 echo "You are running the latest version."
 # --- End of Self-Update Logic ---
