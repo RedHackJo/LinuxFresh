@@ -14,6 +14,7 @@ A comprehensive Bash script to automate the maintenance of Debian-based Linux sy
 
 ### 1. Clone the repository
 git clone [https://github.com/RedHackJo/LinuxFresh.git](https://github.com/RedHackJo/LinuxFresh.git)
+
 cd LinuxFresh
 
 
