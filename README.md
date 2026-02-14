@@ -13,10 +13,12 @@ A comprehensive Bash script to automate the maintenance of Debian-based Linux sy
 ## 🚀 Usage
 
 ### 1. Clone the repository
+```bash
 git clone [https://github.com/RedHackJo/LinuxFresh.git](https://github.com/RedHackJo/LinuxFresh.git)
 
 cd LinuxFresh
 
+```
 
 ### 2. Set Permissions
 
